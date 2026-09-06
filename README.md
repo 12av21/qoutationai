@@ -31,6 +31,7 @@ python -m http.server 4173
 ```
 
 Open `http://127.0.0.1:4173/index.html`.
+https://12av21.github.io/qoutationai/
 
 The main demo path is **Create Quotation**: analyze a requirement, review AI extraction, select a product match, calculate pricing and GST, validate, preview, approve, and send.
 
