@@ -1,5 +1,11 @@
 # QuotePilot AI
 
+## Submission demo
+
+Use **Run governed RFQ-to-Quote demo** on the landing page. The complete flow includes RFQ intake, specification normalization, a mandatory-field progression lock, Technical Approver override with justification, product and margin review, India/USA/EU commercial scenarios, role-separated approvals, printable quotation output, and a downloadable versioned audit trail.
+
+All displayed entities, documents, product records, inventory, prices, tax treatments, approvals, integrations and metrics are fictional demonstration data. Tax, customs-duty, HS-classification and Incoterm outputs are illustrative and require confirmation by authorized professionals before real commercial use.
+
 A browser-only SaaS prototype for AI-powered sales quotation automation.
 
 ## Deploy to GitHub Pages
