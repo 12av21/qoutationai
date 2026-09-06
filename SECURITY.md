@@ -2,19 +2,22 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+QuotePilot AI is currently a browser-only prototype. Security fixes are
+provided for the latest version on the `main` branch.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| `main`  | :white_check_mark: |
+| Older commits | :x:            |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+Please report vulnerabilities privately through GitHub's **Report a
+vulnerability** option on the repository's **Security** tab. Do not open a
+public issue for an unresolved security problem.
+
+Include a clear description, reproduction steps, affected files or URLs, and
+any suggested mitigation. You can expect an acknowledgement within 7 days.
 
 Tell them where to go, how often they can expect to get an update on a
 reported vulnerability, what to expect if the vulnerability is accepted or

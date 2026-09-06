@@ -2,6 +2,22 @@
 
 A browser-only SaaS prototype for AI-powered sales quotation automation.
 
+## Deploy to GitHub Pages
+
+This repository is configured to deploy automatically with GitHub Actions.
+
+1. Push the repository to GitHub with `main` as the default branch.
+2. In the repository, open **Settings > Pages**.
+3. Set **Build and deployment > Source** to **GitHub Actions**.
+4. Push to `main`, or run **Deploy static content to Pages** from the **Actions** tab.
+
+The published site will be available at:
+
+`https://12av21.github.io/qoutationai/`
+
+The workflow is defined in `.github/workflows/static.yml`. No build step or
+environment variables are required because this is a static browser prototype.
+
 Run locally with:
 
 ```powershell
