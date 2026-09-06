@@ -28,6 +28,11 @@ Open `http://127.0.0.1:4173/index.html`.
 
 The main demo path is **Create Quotation**: analyze a requirement, review AI extraction, select a product match, calculate pricing and GST, validate, preview, approve, and send.
 
+The landing page also includes **Run pressure-transmitter RFQ demo**, a guided
+walkthrough covering document evidence, clarification drafting, product and
+commercial ranking, margin-policy approval, PDF-ready quotation output, and an
+auditable decision timeline.
+
 ## Structure
 
 - `index.html`: browser entry point and shell markup
