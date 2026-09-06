@@ -1,0 +1,28 @@
+{
+  "workspace": {
+    "name": "Acme Corporation",
+    "owner": "Adarsh Sharma",
+    "currency": "INR",
+    "gstRate": 18
+  },
+  "quotation": {
+    "id": "QT-2026-1042",
+    "customer": "Nova Technologies",
+    "quantity": 50,
+    "unitPrice": 2000,
+    "discountRate": 10,
+    "services": [
+      { "name": "Installation", "amount": 15000 },
+      { "name": "Annual Support", "amount": 10000 }
+    ]
+  },
+  "agents": [
+    "Requirement Agent",
+    "Product Matching Agent",
+    "Pricing Agent",
+    "Discount Agent",
+    "Tax Agent",
+    "Validation Agent",
+    "Quotation Agent"
+  ]
+}
