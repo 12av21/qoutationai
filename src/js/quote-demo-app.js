@@ -1343,7 +1343,11 @@
       }
     });
 
-    document.getElementById('sidebar-toggle')?.addEventListener('click', () => {
+    document.addEventListener('click', (event) => {
+      const toggleButton = event.target.closest('#sidebar-toggle');
+      if (!toggleButton) return;
+      event.preventDefault();
+      event.stopPropagation();
       document.querySelector('.sidebar')?.classList.toggle('open');
     });
 
@@ -1375,43 +1379,58 @@
     if (sidebar && !document.getElementById('sidebar-toggle')) {
       const toggle = document.createElement('button');
       toggle.id = 'sidebar-toggle';
+      toggle.type = 'button';
       toggle.className = 'ghost-btn';
       toggle.textContent = '☰';
+      toggle.setAttribute('aria-label', 'Toggle sidebar');
       toggle.style.position = 'absolute';
       toggle.style.left = '16px';
       toggle.style.top = '16px';
-      toggle.style.display = 'none';
-      document.querySelector('.main').prepend(toggle);
+      document.querySelector('.main')?.prepend(toggle);
     }
     const mobileToggle = document.getElementById('sidebar-toggle');
+    const toggleSidebar = () => {
+      document.querySelector('.sidebar')?.classList.toggle('open');
+    };
     if (mobileToggle) {
-      mobileToggle.style.display = 'none';
-      if (window.innerWidth <= 560) mobileToggle.style.display = 'inline-flex';
+      mobileToggle.onclick = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleSidebar();
+      };
     }
-    window.addEventListener('resize', () => {
-      const toggle = document.getElementById('sidebar-toggle');
-      if (toggle) toggle.style.display = window.innerWidth <= 560 ? 'inline-flex' : 'none';
-    });
+
+    const mobileBrand = document.querySelector('.mobile-brand');
+    if (mobileBrand) {
+      mobileBrand.onclick = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleSidebar();
+      };
+    }
 
     document.querySelectorAll('[data-view]').forEach(button => {
-      button.addEventListener('click', () => {
+      button.onclick = () => {
         const view = button.dataset.view;
         const map = {
           dashboard: '/dashboard',
+          quotations: '/rfqs',
           rfqs: '/rfqs',
-          catalogue: '/catalogue',
-          customers: '/customers',
-          quotes: '/quotes',
-          approvals: '/approvals',
+          create: '/rfqs/RFQ-2026-0042',
+          inbox: '/notifications',
+          catalog: '/catalog',
           pricing: '/pricing',
-          currencies: '/pricing',
-          audit: '/rfqs/RFQ-2026-0042',
-          notifications: '/notifications',
-          askquotepilot: '/ask-quotepilot',
+          agents: '/dashboard',
+          approvals: '/approvals',
+          customers: '/customers',
+          analytics: '/dashboard',
+          integrations: '/settings',
           settings: '/settings'
         };
-        go(map[view] || '/dashboard');
-      });
+        const route = map[view] || '/dashboard';
+        document.querySelector('.sidebar')?.classList.remove('open');
+        go(route);
+      };
     });
 
     document.querySelectorAll('[data-action="enterApp"]').forEach(el => {

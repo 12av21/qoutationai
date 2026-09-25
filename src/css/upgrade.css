@@ -1050,8 +1050,27 @@ field select {
   }
 }
 
+#sidebar-toggle {
+  display: none;
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 1100;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(18, 37, 63, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--navy);
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(18, 37, 63, 0.12);
+}
+
 @media (max-width: 560px) {
   .app-shell { display: flex; }
+  #sidebar-toggle { display: inline-flex; }
   .sidebar {
     position: fixed;
     left: 0;
