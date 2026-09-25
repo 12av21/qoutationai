@@ -1,486 +1,565 @@
+<div align="center">
 
+⚡ QuotePilot AI
 
+From messy RFQ → validated quotation → human-approved release
 
+<p>
+  <strong>AI-powered B2B quotation automation for industrial sales teams</strong>
+</p>
 
-QuotePilot AI
-AI-powered B2B RFQ-to-Quotation Automation Platform
+<p>
+  <a href="#-live-demo-flow">Demo</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-ai-agents">AI Agents</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-roadmap">Roadmap</a>
+</p>
 
-QuotePilot AI transforms complex, unstructured B2B Requests for Quotation (RFQs) into validated, commercially controlled quotations.
+<p>
+  <img src="https://img.shields.io/badge/AI-Agentic%20Workflow-111827?style=for-the-badge" alt="AI Agentic Workflow">
+  <img src="https://img.shields.io/badge/Human-in-the-Loop-2563EB?style=for-the-badge" alt="Human in the loop">
+  <img src="https://img.shields.io/badge/Multi--Tenant-SaaS-7C3AED?style=for-the-badge" alt="Multi tenant SaaS">
+  <img src="https://img.shields.io/badge/Financial%20Rules-059669?style=for-the-badge" alt="Financial rules">
+</p>
 
-It combines AI-powered document understanding, product matching, deterministic pricing rules, margin controls, multi-currency support, approval workflows, human-in-the-loop governance, quotation generation, and a versioned audit trail.
+<p>
+  <img src="https://img.shields.io/badge/React-TypeScript-61DAFB?style=flat-square&logo=react&logoColor=111827" alt="React">
+  <img src="https://img.shields.io/badge/Python-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Docker-Container-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+</p>
 
-Core Principle
-AI prepares the quotation. Humans approve the commercial commitment.
+</div>
 
-🚀 Project Overview
-B2B sales teams often receive RFQs through:
+🎯 The One-Liner
 
-PDF documents
+QuotePilot AI converts complex B2B RFQs into accurate, commercially controlled, human-approved quotations — in minutes instead of hours.
 
-Excel spreadsheets
+It is not just a chatbot that writes quotes.
 
-Emails
+QuotePilot is a governed RFQ-to-quotation workflow where AI handles repetitive reasoning and extraction, deterministic services handle financial rules, and humans remain responsible for critical commercial decisions.
 
-WhatsApp/messages
+✨ Why QuotePilot?
 
-Word documents
+B2B quotation teams often receive requirements through:
 
-Plain text
+📧 Email
+📄 PDF
+📊 Excel
+💬 WhatsApp / Messages
+📝 Free-form customer requests
 
-The sales team then has to manually:
+The salesperson then has to:
 
-Read and extract requirements.
+Extract requirements
+       ↓
+Normalize specifications
+       ↓
+Find matching products
+       ↓
+Check availability
+       ↓
+Calculate price + discount
+       ↓
+Calculate margin
+       ↓
+Check tax / trade terms
+       ↓
+Get approvals
+       ↓
+Create quotation
+       ↓
+Send + follow up
 
-Normalize technical specifications.
+QuotePilot turns that into one controlled workflow:
 
-Identify missing information.
+┌─────────────┐
+│   RFQ       │
+│ PDF / XLSX  │
+│ Email / Text│
+└──────┬──────┘
+       ↓
+┌───────────────────┐
+│ 🤖 Intake Agent   │
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│ 🔎 Requirement    │
+│    Agent          │
+└────────┬──────────┘
+         ↓
+    Missing specs?
+      ↙       ↘
+    YES        NO
+     ↓          ↓
+Clarification  Match
+     ↓          ↓
+     └─────┬────┘
+           ↓
+┌───────────────────┐
+│ 📦 Catalogue Agent│
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│ 💰 Commercial     │
+│    Engine         │
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│ 🛡️ Validation     │
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│ 👥 Human Approval │
+└────────┬──────────┘
+         ↓
+┌───────────────────┐
+│ 📄 Final Quote    │
+└───────────────────┘
 
-Search the product catalogue.
+🚀 Live Demo Flow
 
-Check stock and lead time.
+The strongest way to demonstrate QuotePilot is to show one RFQ travelling through the entire system.
 
-Calculate pricing and discounts.
+01 — Upload RFQ
 
-Check margins.
-
-Apply tax and commercial rules.
-
-Obtain technical/commercial/finance approval.
-
-Prepare and send the quotation.
-
-Maintain records and audit history.
-
-QuotePilot AI brings these steps into one governed workflow.
-
-🎯 Problem
-Traditional quotation workflows are often:
-
-Manual
-
-Slow
-
-Spreadsheet-heavy
-
-Dependent on individual sales knowledge
-
-Vulnerable to data-entry mistakes
-
-Difficult to audit
-
-Difficult to scale
-
-Prone to missing technical requirements
-
-Risky when discounts or margins are applied incorrectly
-
-QuotePilot AI addresses this by combining AI assistance + deterministic business rules + human approval.
-
-💡 Solution
 Customer RFQ
-     │
-     ▼
-┌──────────────────────┐
-│    RFQ Intake        │
-│ PDF / Excel / Email  │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Requirement Analysis │
-│ Extraction +         │
-│ Normalization        │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Clarification Gate   │
-│ Missing / Ambiguous  │
-│ Specifications       │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Product Matching     │
-│ Catalogue + Evidence │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Commercial Engine    │
-│ Price + Discount +   │
-│ Margin + FX + Tax    │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Validation & Risk    │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Approval Workflow    │
-│ Technical →          │
-│ Commercial → Finance │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Quote Generation     │
-│ PDF + Versioning     │
-└──────────┬───────────┘
-           ▼
-┌──────────────────────┐
-│ Versioned Audit Trail│
-└──────────────────────┘
-✨ Key Features
-1. AI-Powered RFQ Intake
-Accept RFQs from:
+     ↓
+📄 Upload PDF / Excel
+     ↓
+🤖 Intake Agent
+     ↓
+Structured requirements
 
-PDF
+02 — Verify Specifications
 
-DOCX
+QuotePilot shows:
 
-XLSX
+Customer Value
 
-CSV
+Normalized Value
 
-Email content
+Status
 
-Manual text
+0–10 bar
 
-Copy/paste
+Pressure range: 0–10 bar
 
-Extract:
+✅ Verified
 
-Customer
+4–20 mA
 
-RFQ number
+Output: 4–20 mA
 
-RFQ date
+✅ Verified
 
-Products
+IP67
 
-Quantities
+Protection: IP67
 
-Technical specifications
+✅ Verified
 
-Delivery requirements
+—
 
-Destination
+Process connection
 
-Payment terms
+⚠️ Missing
 
-Incoterms
+Important: QuotePilot does not silently invent missing specifications.
 
-Special conditions
+03 — Clarification Gate
 
-Attachments
+If a mandatory field is missing:
 
-Each extracted field can retain:
+⚠️ QUOTATION BLOCKED
 
-Value
+Missing requirement:
+Process connection size
 
-Source
+Suggested action:
+Ask customer for clarification
 
-Confidence
+[ Generate Clarification Request ]
 
-Source location
+A technical approver can override the block only with a recorded justification.
 
-Extraction status
+04 — Product Matching
 
-2. Specification Verification & Normalization
-QuotePilot compares the customer's original requirements with normalized values.
+RFQ Requirement
+      ↓
+Hybrid Search
+      ↓
+Technical Filtering
+      ↓
+Reranking
+      ↓
+Evidence-backed candidates
 
 Example:
 
-Field	Customer Value	Normalized Value	Status
-Range	0–16 bar	0–16 bar	Verified
-Signal	4–20mA HART	4–20mA + HART	Normalized
-Process Connection	Not provided	Unresolved	Missing
-Wetted Material	Not provided	Unresolved	Missing
-Supported statuses include:
+Product
 
-Verified
-
-Normalized
-
-Assumed
-
-Missing
-
-Ambiguous
-
-Conflicting
-
-Invalid
-
-Optional
-
-Important Governance Rule
-QuotePilot must never silently invent missing specifications.
-
-Assumptions must be explicitly identified.
-
-3. Clarification Gate
-When mandatory specifications are missing or ambiguous, the quotation workflow can be blocked.
-
-Example:
-
-Missing:
-- Process connection
-- Wetted material
-
-Status:
-CLARIFICATION_REQUIRED
-The system can generate a customer clarification request.
-
-Example:
-
-Please confirm the process connection standard and wetted-part material for the requested pressure transmitters.
-
-Available actions:
-
-Send Clarification
-
-Edit Message
-
-Technical Approver Override
-
-An override requires:
-
-Approver
-
-Role
-
-Justification
-
-Timestamp
-
-Applied assumption
-
-Supporting reference
-
-The override is recorded in the audit trail.
-
-4. AI Product Matching
-The catalogue agent searches and ranks suitable products.
-
-Each candidate can display:
-
-Product name
-
-SKU
-
-Technical fit
-
-Matching attributes
-
-Non-matching attributes
+Technical Fit
 
 Stock
 
-Lead time
+Lead Time
 
-Unit price
+Status
 
-Cost
+PT-100
 
-Evidence
+96%
 
-Recommendation status
+75
 
-Example:
+2 weeks
 
-PTX-400 HART 316L
+🟢 Candidate
 
-Technical Fit: 96%
-Stock: 24
-Lead Time: 14 days
-Unit Price: ₹18,900
-The system should explain why a product was selected instead of simply returning an unexplained recommendation.
+PT-220
 
-5. Commercial Pricing Engine
-The pricing engine handles:
+89%
+
+20
+
+4 weeks
+
+🟡 Review
+
+PT-310
+
+62%
+
+100
+
+1 week
+
+🔴 Mismatch
+
+05 — Commercial Review
+
+QuotePilot calculates:
 
 List Price
     ↓
 Agreement Discount
     ↓
-Quantity Discount
+Net Price
     ↓
-Additional Charges
-    ↓
-Currency Conversion
-    ↓
-Margin Validation
+FX Conversion
     ↓
 Tax
     ↓
-Final Quote
-Example:
+COGS
+    ↓
+Offer Margin
+    ↓
+Minimum Margin Check
 
-Quantity: 50
-Unit Price: ₹2,000
+If the margin falls below the configured floor:
 
-Subtotal:
-50 × ₹2,000 = ₹1,00,000
+🛑 COMMERCIAL EXCEPTION
 
-Discount:
-10% = ₹10,000
+Offer Margin:        7.8%
+Required Floor:     12.0%
 
-Taxable Amount:
-₹90,000
+Action:
+Commercial approval required
 
-Tax:
-Calculated from configured rules
+[ Revise Price ] [ Request Exception ]
 
-Final Total:
-Calculated dynamically
-Financial calculations should be deterministic and server-side rather than relying on an LLM.
+06 — Approval Chain
 
-6. Margin & Profitability Controls
-QuotePilot compares the proposed margin against a configured policy floor.
+Technical Approver
+        ↓
+Commercial Manager
+        ↓
+Finance Reviewer
+        ↓
+   ✅ RELEASE
 
-Example:
+No required approval → no customer release.
 
-Selling Price: ₹20,000
-COGS: ₹17,000
+07 — Final Quotation
 
-Gross Profit:
-₹3,000
+Generated quotation includes:
 
-Margin:
-15%
+Quote number + version
 
-Policy Floor:
-12%
+Customer
 
-Status:
-Within Policy
-If:
+Destination
 
-Offer Margin: 8.4%
-Policy Floor: 12%
-the system can create a:
+Currency
 
-Commercial Exception
+Line items
 
-The quote should require the appropriate approval before release.
+Unit price
 
-7. Multi-Currency Support
-QuotePilot supports a multi-currency quotation architecture.
+Quantity
 
-Initial supported currencies:
-
-INR — Indian Rupee
-
-USD — US Dollar
-
-EUR — Euro
-
-GBP — British Pound
-
-AED — UAE Dirham
-
-SGD — Singapore Dollar
-
-AUD — Australian Dollar
-
-CAD — Canadian Dollar
-
-JPY — Japanese Yen
-
-CHF — Swiss Franc
-
-The architecture can support additional currencies.
-
-Example
-Catalogue base price:
-
-₹20,000 INR
-Customer quotation currency:
-
-USD
-Configured FX rate:
-
-1 USD = ₹83.25
-Converted amount:
-
-₹20,000 / 83.25 ≈ $240.24
-FX Rate Locking
-When a quotation is generated/approved, the FX rate used for that quotation version should be stored.
-
-Historical approved quotations should not silently change because the current exchange rate changed.
-
-8. Customer Currency Preferences
-Customer records can contain:
-
-Country
-
-Billing currency
-
-Shipping currency
-
-Preferred quotation currency
-
-Example:
-
-Customer:
-ABC Industrial Solutions
-
-Country:
-United States
-
-Preferred Currency:
-USD
-The preferred currency can be used as the default when creating a quotation.
-
-9. Tax & Trade Handling
-Configurable commercial fields include:
+Discount
 
 Tax
-GST
 
-Intra-state
+Lead time
 
-Inter-state
+Validity
 
-Export
-
-SEZ
-
-Payment Methods
-UPI
-
-NEFT
-
-RTGS
-
-Bank Transfer
-
-Card
-
-Letter of Credit
+Payment terms
 
 Incoterms
-EXW
 
-FCA
+Assumptions
 
-FOB
+Exceptions
 
-CIF
+Approval status
 
-CPT
+                         ┌───────────────┐
+                         │ FINAL QUOTE   │
+                         │ QP-2026-0042  │
+                         │ VERSION 03    │
+                         └───────────────┘
+                                  │
+                    👤 Human Approved
+                                  │
+                                  ↓
+                            📄 PDF Release
 
-CIP
+🧠 AI Agents
 
-DAP
+QuotePilot uses specialized agents instead of asking one general-purpose model to do everything.
 
-DDP
+Agent
 
-HS-code information can be stored as configurable/reference information.
+Responsibility
 
-The system should not automatically represent AI-generated customs classification as legally final.
+🤖 Intake Agent
 
-10. Multi-User Authentication
-QuotePilot is designed as a multi-user SaaS application.
+Reads RFQ files/text and extracts structured data
 
-Authentication features:
+🔎 Requirement Agent
+
+Normalizes specifications and detects missing/conflicting values
+
+📦 Catalogue Agent
+
+Finds technically relevant products
+
+💰 Commercial Agent
+
+Calculates price, discount, FX, margin and commercial rules
+
+🛡️ Validation Agent
+
+Checks confidence, compatibility, assumptions and policy
+
+📄 Quote Agent
+
+Generates quotation and customer-facing drafts
+
+Agent orchestration
+
+flowchart LR
+    A[Customer RFQ] --> B[Intake Agent]
+    B --> C[Requirement Agent]
+    C --> D{Critical Data Missing?}
+    D -->|Yes| E[Clarification Gate]
+    E --> C
+    D -->|No| F[Catalogue Agent]
+    F --> G[Commercial Agent]
+    G --> H[Validation Agent]
+    H --> I{Approval Required?}
+    I -->|Yes| J[Human Approval]
+    J --> K[Quote Agent]
+    I -->|No| K
+    K --> L[Final Quotation]
+
+🛡️ The Core Principle
+
+<div align="center">
+
+AI prepares the quotation.
+
+Rules protect the commercial logic.
+
+Humans approve the commitment.
+
+</div>
+
+This design reduces the risk of:
+
+invented specifications
+
+incorrect product selection
+
+uncontrolled discounts
+
+margin leakage
+
+accidental quote release
+
+untraceable AI decisions
+
+💎 Features
+
+📥 RFQ Intake
+
+PDF upload
+
+Excel upload
+
+Structured text input
+
+RFQ classification
+
+Requirement extraction
+
+Source evidence
+
+Confidence tracking
+
+🔍 Specification Intelligence
+
+Every extracted field can carry a governed state:
+
+✅ Verified
+🔄 Normalized
+🟡 Assumed
+⚠️ Missing
+❓ Ambiguous
+🔴 Conflicting
+⛔ Invalid
+ℹ️ Optional
+
+🧩 Product Matching
+
+Catalogue search
+
+Attribute filtering
+
+Semantic retrieval
+
+Hybrid retrieval
+
+Candidate ranking
+
+Technical-fit scoring
+
+Evidence/source display
+
+Stock visibility
+
+Lead-time visibility
+
+💰 Commercial Engine
+
+Supports:
+
+List price
+
+Customer pricing
+
+Agreement discount
+
+COGS
+
+Net price
+
+Margin
+
+Minimum margin floor
+
+Discount limits
+
+Commercial exceptions
+
+Financial calculations stay deterministic.
+
+AI can recommend.
+
+The rules engine calculates.
+
+💱 Multi-Currency
+
+QuotePilot is designed for international B2B quotations.
+
+Supported example currencies:
+
+🇮🇳 INR   🇺🇸 USD   🇪🇺 EUR   🇬🇧 GBP
+🇦🇪 AED   🇸🇬 SGD   🇦🇺 AUD   🇨🇦 CAD
+🇯🇵 JPY   🇨🇭 CHF
+
+Currency architecture
+
+Organization Base Currency
+          ↓
+      FX Engine
+          ↓
+Customer Quote Currency
+          ↓
+Pricing + Discount
+          ↓
+Margin Calculation
+          ↓
+Tax / Trade Rules
+          ↓
+Approval
+          ↓
+       FX Lock
+
+Important design rule
+
+An approved historical quotation should not silently change when today's exchange rate changes.
+
+Therefore each quotation version stores its applicable FX rate.
+
+🌍 Tax & Trade Controls
+
+Designed to support configurable commercial fields such as:
+
+GST
+
+Intra-state / inter-state
+
+Export / SEZ
+
+Payment methods
+
+Incoterms
+
+HS-code field
+
+Customs confirmation/disclaimer
+
+Destination country
+
+Currency
+
+Customs and tax classifications should remain configurable and reviewable rather than being treated as automatically legally final.
+
+👥 Real User & Organization System
+
+QuotePilot is designed as a real multi-user SaaS rather than a single demo login.
+
+Roles
+
+SUPER_ADMIN
+    │
+    ├── ORGANIZATION_ADMIN
+    │       ├── SALES_MANAGER
+    │       │      └── SALES_USER
+    │       │
+    │       ├── TECHNICAL_APPROVER
+    │       ├── COMMERCIAL_MANAGER
+    │       ├── FINANCE_REVIEWER
+    │       └── VIEWER
+
+Authentication
 
 Registration
 
@@ -488,496 +567,95 @@ Login
 
 Logout
 
-Email verification
-
 Password reset
 
-Secure password hashing
+Email verification
 
 Session management
+
+Rate limiting
 
 Secure cookies
 
 CSRF protection
 
-Rate limiting
+Server-side validation
 
-Login protection
+Password hashing
 
-Role-based authorization
+🏢 Multi-Tenant SaaS
 
-Example routes:
+Each organization is isolated using tenant-aware data access.
 
-/login
-/register
-/forgot-password
-/reset-password
-/verify-email
-11. Role-Based Access Control
-Supported roles:
+                    QuotePilot
+                        │
+          ┌─────────────┼─────────────┐
+          ↓             ↓             ↓
+      Company A      Company B      Company C
+          │             │             │
+       Users         Users         Users
+          │             │             │
+       RFQs           RFQs          RFQs
+       Quotes         Quotes        Quotes
+       Catalog        Catalog       Catalog
 
-SUPER_ADMIN
-ORG_ADMIN
-SALES_MANAGER
-SALES_USER
-TECHNICAL_APPROVER
-COMMERCIAL_MANAGER
-FINANCE_REVIEWER
-VIEWER
-Example responsibilities:
+Tenant isolation is enforced server-side.
 
-Sales User
-Create RFQs
+Never rely only on frontend filtering.
 
-View assigned RFQs
+📊 Dashboard Experience
 
-Create quotations
+A future-ready dashboard can surface:
 
-Edit draft quotations
+┌──────────────────────────────────────────────────────┐
+│ QuotePilot AI                         🔔  👤 Account │
+├──────────────┬───────────────────────────────────────┤
+│              │                                       │
+│ 📊 Dashboard │  RFQs        Quotes       Pending    │
+│ 📥 RFQs      │  128          86            12       │
+│ 📄 Quotes    │                                       │
+│ 📦 Catalogue │  ─────────────────────────────────   │
+│ 👥 Customers │                                       │
+│ ✅ Approvals │  Recent RFQs                         │
+│ 💰 Pricing   │  • RFQ-1042  🟡 Review               │
+│ 📋 Audit     │  • RFQ-1041  🟢 Approved             │
+│ ⚙ Settings  │  • RFQ-1040  🔴 Clarification        │
+│              │                                       │
+└──────────────┴───────────────────────────────────────┘
 
-Request approval
+Suggested dashboard sections:
 
-Technical Approver
-Review technical requirements
+RFQ pipeline
 
-Resolve clarification gates
+Quote pipeline
 
-Approve technical fit
-
-Authorize technical overrides
-
-Commercial Manager
-Review pricing
-
-Review discounts
-
-Review margins
-
-Approve commercial exceptions
-
-Finance Reviewer
-Review tax
-
-Review payment terms
-
-Review financial calculations
-
-Provide finance approval
-
-Organization Admin
-Manage users
-
-Manage catalogue
-
-Manage pricing rules
-
-Configure organization settings
-
-12. Organization / Multi-Tenant Architecture
-QuotePilot is designed around organizations/tenants.
-
-Platform
-│
-├── Organization A
-│   ├── Users
-│   ├── Customers
-│   ├── Products
-│   ├── RFQs
-│   ├── Quotes
-│   └── Audit Logs
-│
-├── Organization B
-│   ├── Users
-│   ├── Customers
-│   ├── Products
-│   ├── RFQs
-│   └── Quotes
-│
-└── Organization C
-Business records should be associated with an:
-
-organization_id
-The backend must enforce tenant isolation so one organization cannot access another organization's data.
-
-13. Role-Aware User Dashboard
-After login, users are directed to their dashboard.
-
-Dashboard can display:
-
-RFQs received
-
-RFQs processing
-
-Clarifications pending
-
-Quotes awaiting approval
-
-Approved quotes
-
-Released quotes
+Pending approvals
 
 Margin exceptions
 
-Total quote value
+Clarification requests
 
 Recent activity
 
-Sales users can see:
+Revenue/quote analytics
 
-My RFQs
-My Quotations
-Draft Quotes
-Approval Requests
-Clarifications
-Customers
-Follow-ups
-Managers can see team-level metrics.
+Currency breakdown
 
-Approvers can see their approval queues.
+AI processing status
 
-14. Approval Workflow
-QuotePilot supports:
+🔐 Security by Design
 
-Technical Approval
-        ↓
-Commercial Approval
-        ↓
-Finance Review
-        ↓
-Quote Release
-Approval statuses:
+Security is treated as part of the architecture.
 
-Pending
+Application security
 
-Approved
+Password hashing
 
-Rejected
-
-Needs Revision
-
-Not Required
-
-A quote cannot be released until required approvals are completed.
-
-15. Quote Versioning
-Every revision creates a new version.
-
-Example:
-
-QP-2026-0018 v1
-QP-2026-0018 v2
-QP-2026-0018 v3
-Store:
-
-Previous value
-
-New value
-
-Changed field
-
-Changed by
-
-Timestamp
-
-Reason
-
-Historical commercial decisions should remain traceable.
-
-16. Professional Quotation Generation
-Generated quotations can include:
-
-Quote number
-
-Version
-
-Customer
-
-Address
-
-Destination
-
-Quote date
-
-Validity
-
-Products
-
-SKU
-
-Quantity
-
-Unit price
-
-Amount
-
-Discount
-
-Tax
-
-Grand total
-
-Currency
-
-Payment terms
-
-Delivery terms
-
-Incoterms
-
-Notes
-
-Assumptions
-
-Exceptions
-
-A PDF should only be released after the required approval workflow is completed.
-
-17. Versioned Audit Trail
-QuotePilot records important actions.
-
-Example:
-
-22:03:02
-RFQ uploaded
-
-22:03:33
-Specifications normalized
-
-22:03:43
-Technical override authorized
-
-22:03:59
-Commercial review completed
-
-22:04:05
-Commercial exception approved
-
-22:04:05
-Finance pre-clearance
-
-22:04:05
-Quote generated
-Each audit event can contain:
-
-Event
-
-Timestamp
-
-Actor
-
-Role
-
-Action
-
-Reason
-
-Evidence
-
-Quote version
-
-The system can provide:
-
-Download Audit JSON
-18. Ask QuotePilot AI
-A contextual AI assistant can answer questions about the current workflow.
-
-Examples:
-
-Why was this product selected?
-
-Why is this quote blocked?
-
-What specifications are missing?
-
-Why is the margin below the floor?
-
-Who approved this exception?
-
-What changed between version 1 and version 2?
-
-Which products have sufficient stock?
-
-Explain the final quotation.
-The assistant should use application data/evidence and should not invent facts.
-
-19. AI Agent Architecture
-QuotePilot can be organized around specialized agents:
-
-┌───────────────────┐
-│   Intake Agent    │
-└─────────┬─────────┘
-          ▼
-┌───────────────────┐
-│ Requirement Agent │
-└─────────┬─────────┘
-          ▼
-┌───────────────────┐
-│ Catalogue Agent   │
-└─────────┬─────────┘
-          ▼
-┌───────────────────┐
-│ Commercial Agent  │
-└─────────┬─────────┘
-          ▼
-┌───────────────────┐
-│ Validation Agent  │
-└─────────┬─────────┘
-          ▼
-┌───────────────────┐
-│   Quote Agent     │
-└───────────────────┘
-Intake Agent
-Extracts RFQ information.
-
-Requirement Agent
-Normalizes specifications and detects missing information.
-
-Catalogue Agent
-Retrieves and ranks suitable products.
-
-Commercial Agent
-Assists with commercial analysis.
-
-Validation Agent
-Checks compatibility, confidence, policy violations and exceptions.
-
-Quote Agent
-Produces the final quotation from validated information.
-
-🏗️ System Architecture
-A proposed high-level architecture:
-
-                  ┌─────────────────┐
-                  │     User        │
-                  │ Web Application │
-                  └────────┬────────┘
-                           │
-                           ▼
-                  ┌─────────────────┐
-                  │ React + TS      │
-                  │ Frontend        │
-                  └────────┬────────┘
-                           │ HTTPS
-                           ▼
-                  ┌─────────────────┐
-                  │ API / Backend   │
-                  │ FastAPI         │
-                  └───────┬─────────┘
-                          │
-          ┌───────────────┼────────────────┐
-          ▼               ▼                ▼
-   ┌────────────┐  ┌─────────────┐  ┌──────────────┐
-   │ AI Agent   │  │ Rules Engine │  │ Auth / RBAC  │
-   │ Orchestrator│  │             │  │              │
-   └─────┬──────┘  └──────┬──────┘  └──────────────┘
-         │                │
-         ▼                ▼
-   ┌────────────┐  ┌─────────────┐
-   │ LLM / RAG  │  │ PostgreSQL  │
-   │ Catalogue  │  │ Database    │
-   └────────────┘  └─────────────┘
-                         │
-                         ▼
-                  ┌──────────────┐
-                  │ Audit / Logs  │
-                  └──────────────┘
-🛠️ Suggested Technology Stack
-The exact implementation stack can evolve with the prototype. The following represents the intended architecture.
-
-Frontend
-React
-
-TypeScript
-
-Tailwind CSS
-
-Vite
-
-Backend
-Python
-
-FastAPI
-
-AI
-Gemini / compatible LLM
-
-Structured outputs
-
-Agent orchestration
-
-RAG / hybrid retrieval
-
-Embeddings / vector search
-
-Database
-PostgreSQL
-
-pgvector where required
-
-Authentication
-Secure session or JWT-based architecture
-
-RBAC
-
-Organization/tenant isolation
-
-Infrastructure
-Docker
-
-Cloud Run or comparable cloud deployment
-
-Object storage for documents
-
-Logging and monitoring
-
-🗄️ Core Data Model
-Important entities include:
-
-users
-organizations
-organization_members
-roles
-permissions
-sessions
-customers
-customer_contacts
-products
-inventory
-rfqs
-rfq_documents
-rfq_requirements
-normalized_requirements
-clarifications
-product_matches
-pricing_rules
-pricing_calculations
-commercial_exceptions
-approvals
-quotes
-quote_items
-quote_versions
-currencies
-exchange_rates
-tax_rules
-audit_events
-audit_evidence
-ai_agent_runs
-ai_assumptions
-notifications
-🔐 Security
-Security requirements include:
-
-Secure password hashing
-
-Authentication
-
-Authorization
-
-RBAC
-
-Tenant isolation
+Secure session handling
 
 CSRF protection
+
+Rate limiting
 
 Input validation
 
@@ -985,466 +663,759 @@ SQL injection protection
 
 XSS protection
 
-File upload validation
+Secure file upload validation
 
-Secure session management
+Safe filename generation
 
-Rate limiting
+RBAC
 
-Brute-force protection
+Tenant isolation
 
-Secure password reset
+AI security
 
-Email verification
+Grounding against approved catalogue data
 
-Audit logging
+Source evidence
 
-Server-side financial validation
+Confidence tracking
 
-Protected API endpoints
+Explicit assumptions
 
-Critical authorization must always be enforced on the backend.
+Deterministic financial calculations
 
-🧪 Example Demo Scenario
-Customer RFQ
-Customer:
-ABC Industrial Solutions
+Human approval for critical actions
 
-Product:
-Pressure Transmitter
+Audit trail
 
-Quantity:
-18
+Operational security
 
-Range:
-0–16 bar
+Structured logs
 
-Signal:
-4–20 mA + HART
+Audit events
 
-IP Rating:
-IP67
+Session tracking
 
-Process Connection:
-Missing
+Version history
 
-Wetted Material:
-Missing
+Approval history
 
-Delivery:
-Within 3 weeks
+Exception history
 
-Currency:
-USD
-QuotePilot Workflow
-RFQ Upload
+🧾 Versioned Audit Trail
+
+Every important action can become an auditable event.
+
+RFQ Uploaded
      ↓
-AI Extraction
+Specifications Extracted
      ↓
-Specification Normalization
+Specifications Normalized
      ↓
-Missing Specifications
+Technical Override
      ↓
-Clarification Gate
+Product Selected
      ↓
-Technical Review / Override
+Commercial Review
      ↓
-Product Matching
+Margin Exception
      ↓
-Stock + Lead Time
+Finance Approval
      ↓
+Quote Generated
+     ↓
+Quote Version Updated
+     ↓
+Customer Release
+
+Each event can store:
+
+Actor
+Role
+Timestamp
+Organization
+Action
+Previous Value
+New Value
+Reason
+Evidence
+Quote Version
+
+🤖 Ask QuotePilot
+
+A persistent assistant can operate with the current quote context.
+
+Example questions:
+
+"Why was this product selected?"
+
+"What specification is missing?"
+
+"Why is this quote blocked?"
+
+"Show me the margin calculation."
+
+"Which approval is pending?"
+
+"What changed between v2 and v3?"
+
+"Generate a clarification request."
+
+The assistant should answer using the current governed context, not generic unsupported assumptions.
+
+🏗️ Architecture
+
+flowchart TB
+    U[Sales User / Approver] --> UI[React + TypeScript Web App]
+
+    UI --> API[FastAPI Backend]
+
+    API --> AUTH[Authentication + RBAC]
+    API --> RFQ[RFQ Service]
+    API --> QUOTE[Quotation Service]
+    API --> COMM[Commercial Rules Engine]
+    API --> APPROVAL[Approval Service]
+    API --> AUDIT[Audit Service]
+    API --> FX[Currency / FX Service]
+
+    RFQ --> AGENTS[AI Agent Orchestrator]
+
+    AGENTS --> INTAKE[Intake Agent]
+    AGENTS --> REQ[Requirement Agent]
+    AGENTS --> CAT[Catalogue Agent]
+    AGENTS --> VAL[Validation Agent]
+    AGENTS --> QAGENT[Quote Agent]
+
+    CAT --> DB[(PostgreSQL + pgvector)]
+    COMM --> DB
+    QUOTE --> DB
+    AUDIT --> DB
+    FX --> DB
+
+    COMM --> RULES[Pricing / Margin / Tax Rules]
+
+    QUOTE --> PDF[PDF Generator]
+    APPROVAL --> NOTIFY[Notifications]
+
+🗃️ Core Data Model
+
+erDiagram
+    ORGANIZATION ||--o{ ORGANIZATION_MEMBER : contains
+    USER ||--o{ ORGANIZATION_MEMBER : joins
+    ORGANIZATION ||--o{ CUSTOMER : owns
+    ORGANIZATION ||--o{ RFQ : receives
+    RFQ ||--o{ QUOTE : generates
+    QUOTE ||--o{ QUOTE_VERSION : contains
+    QUOTE_VERSION ||--o{ QUOTE_ITEM : contains
+    QUOTE_VERSION ||--o{ APPROVAL : requires
+    QUOTE_VERSION ||--o{ AUDIT_EVENT : records
+    CUSTOMER ||--o{ QUOTE : receives
+    PRODUCT ||--o{ QUOTE_ITEM : selected
+    CURRENCY ||--o{ EXCHANGE_RATE : defines
+
+Core entities:
+
+Users
+Organizations
+Organization Members
+Roles
+Permissions
+Sessions
+Customers
+Customer Contacts
+Products
+Catalogue Items
+Currencies
+Exchange Rates
+RFQs
+RFQ Requirements
+Quotes
+Quote Versions
+Quote Items
+Pricing Calculations
+Approvals
+Audit Events
+Notifications
+
+🔄 Quote Lifecycle
+
+DRAFT
+  ↓
+RFQ_RECEIVED
+  ↓
+EXTRACTING
+  ↓
+SPEC_REVIEW
+  ↓
+CLARIFICATION_REQUIRED ───────┐
+  ↓                           │
+MATCHING                       │
+  ↓                           │
+COMMERCIAL_REVIEW              │
+  ↓                           │
+APPROVAL_REQUIRED              │
+  ↓                           │
+APPROVED                       │
+  ↓                           │
+GENERATED                      │
+  ↓                           │
+RELEASED                       │
+                              │
+REVISED ←─────────────────────┘
+
+🧪 Example Demo RFQ
+
+Use a simple but realistic RFQ during the hackathon:
+
+ABC Industrial Solutions requires 50 pressure transmitters, range 0–10 bar, 4–20 mA output, IP67 protection and delivery within 3 weeks.
+
+QuotePilot should:
+
+Extract the requirements.
+
+Normalize the specifications.
+
+Identify that process connection size is missing.
+
+Block the quote if the field is mandatory.
+
+Generate a clarification request.
+
+Continue after clarification/approved override.
+
+Match catalogue products.
+
+Check stock and lead time.
+
+Calculate pricing and margin.
+
+Run approvals.
+
+Generate the final quotation.
+
+Record the complete audit trail.
+
+📈 Evaluation Metrics
+
+QuotePilot should be evaluated using measurable metrics.
+
+Area
+
+Metric
+
+Extraction
+
+Exact Match / F1
+
+Requirement Coverage
+
+Required-field coverage
+
+Retrieval
+
+Recall@K / MRR
+
+Validation
+
+Unsupported assumption rate
+
 Pricing
-     ↓
-FX Conversion
-     ↓
-Margin Validation
-     ↓
-Commercial Exception (if required)
-     ↓
-Technical Approval
-     ↓
-Commercial Approval
-     ↓
-Finance Review
-     ↓
-Quotation Generation
-     ↓
-PDF
-     ↓
-Audit Trail
-📊 Evaluation Metrics
-Potential evaluation metrics include:
 
-Requirement Extraction
-Exact Match
+Arithmetic test accuracy
 
-Precision
+Safety
 
-Recall
+Blocked invalid quote rate
 
-F1
-
-Product Retrieval
-Recall@K
-
-MRR
-
-Technical fit accuracy
-
-Quotation Quality
-Arithmetic correctness
-
-Requirement coverage
-
-Policy compliance
-
-Exception detection
-
-AI Quality
-Hallucination/error rate
-
-Evidence coverage
+Workflow
 
 Human override rate
 
-System
-Latency
+Performance
 
-Cost per RFQ
+Processing latency
 
-Reliability
+Cost
 
-Approval turnaround time
+AI cost per RFQ
 
-🎯 MVP Scope
-The MVP should focus on a complete end-to-end workflow rather than attempting to integrate every enterprise system.
+UX
 
-MVP
-User authentication
+Time-to-approved-quote
 
-Organization/workspace
+🧪 Testing Strategy
 
-Role-based access
+Unit Tests
 
-RFQ upload
+✓ Pricing calculation
+✓ Discount calculation
+✓ Margin calculation
+✓ FX conversion
+✓ Tax calculation
+✓ Permission checks
+✓ Quote versioning
+✓ Quote status transitions
 
-Requirement extraction
+AI Evaluation
 
-Specification normalization
+✓ Requirement extraction
+✓ Missing-field detection
+✓ Product retrieval
+✓ Evidence grounding
+✓ Conflicting specification detection
+✓ Hallucination resistance
 
-Clarification gate
+Security Tests
 
-Product catalogue
+✓ Authentication
+✓ Authorization
+✓ Tenant isolation
+✓ CSRF
+✓ XSS
+✓ SQL injection
+✓ File upload validation
+✓ Session invalidation
 
-Product matching
+🧰 Suggested Technology Stack
 
-Pricing rules
+Layer
 
-Margin validation
+Technology
 
-INR/USD/EUR/GBP/AED currency support
+Frontend
 
-Approval workflow
+React + TypeScript
 
-Quote generation
+UI
+
+Tailwind CSS
+
+Backend
+
+Python + FastAPI
+
+AI
+
+Gemini / compatible structured-output LLM
+
+Agent Orchestration
+
+LangGraph / ADK
+
+Database
+
+PostgreSQL
+
+Vector Search
+
+pgvector
+
+Authentication
+
+Secure sessions / JWT architecture
 
 PDF
 
-Quote versioning
+Server-side PDF generation
 
-Audit trail
+Container
 
-Demo data
+Docker
 
-Out of Scope for Initial MVP
-Autonomous price negotiation
+Deployment
 
-Automatic order commitment
+Cloud Run / equivalent
 
-Production ERP write-back
+Monitoring
 
-Fully autonomous customer communication
+Structured logs + metrics
 
-Unvalidated customs classification
+The implementation can be adapted to the team's available infrastructure.
 
-Large-scale production integrations
+📁 Suggested Repository
 
-🧭 Roadmap
-Phase 1 — Prototype
-End-to-end RFQ workflow
-
-AI extraction
-
-Product matching
-
-Pricing
-
-Approval
-
-Quote generation
-
-Audit trail
-
-Phase 2 — Pilot
-Real customer RFQs
-
-Better catalogue retrieval
-
-Email integration
-
-Improved evaluation
-
-Production authentication
-
-Real FX provider
-
-Better monitoring
-
-Phase 3 — Enterprise
-ERP integrations
-
-CRM integrations
-
-Advanced analytics
-
-Enterprise SSO
-
-Private deployment
-
-Advanced tenant controls
-
-Large catalogue support
-
-🏆 Hackathon Demo Focus
-The strongest demonstration is a single complete RFQ journey.
-
-Recommended flow
-0:00 – Problem
-0:20 – QuotePilot overview
-0:40 – Upload RFQ
-1:00 – AI extracts requirements
-1:20 – Missing specification detected
-1:40 – Clarification Gate
-2:00 – Product matching
-2:20 – Pricing + margin
-2:40 – Currency conversion
-3:00 – Approval
-3:20 – Final quotation
-3:40 – Audit trail
-4:00 – Closing
-Closing Message
-QuotePilot AI doesn't replace the sales engineer. It removes the repetitive work between customer requirement and quotation while keeping critical commercial decisions under human control.
-
-⚠️ Demo Data
-The prototype/demo environment should clearly identify fictional or simulated:
-
-Customers
-
-Products
-
-Prices
-
-Inventory
-
-Exchange rates
-
-ERP data
-
-Approval users
-
-Integrations
-
-Production deployment requires appropriate real-world validation, security controls, data governance, and integration testing.
-
-📁 Suggested Repository Structure
-QuotePilot-AI/
+quotepilot-ai/
 │
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── layouts/
-│   │   ├── hooks/
-│   │   ├── services/
-│   │   ├── store/
-│   │   └── types/
-│   └── package.json
+├── apps/
+│   ├── web/
+│   └── api/
 │
-├── backend/
-│   ├── app/
-│   │   ├── api/
-│   │   ├── agents/
-│   │   ├── auth/
-│   │   ├── models/
-│   │   ├── schemas/
-│   │   ├── services/
-│   │   ├── rules/
-│   │   ├── pricing/
-│   │   ├── currency/
-│   │   ├── approvals/
-│   │   └── audit/
-│   └── requirements.txt
+├── services/
+│   ├── ai-engine/
+│   ├── commercial-engine/
+│   ├── approval-service/
+│   ├── audit-service/
+│   └── currency-service/
+│
+├── packages/
+│   ├── types/
+│   ├── validation/
+│   └── ui/
 │
 ├── database/
 │   ├── migrations/
-│   └── seed/
+│   └── seeds/
 │
 ├── docs/
 │   ├── architecture/
 │   ├── diagrams/
 │   ├── api/
-│   └── project-report/
+│   └── demo/
 │
 ├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── e2e/
 │
-├── docker/
-│
-├── .env.example
 ├── docker-compose.yml
+├── .env.example
 └── README.md
-🚀 Getting Started
-Update these commands to match the final implementation.
 
-1. Clone Repository
+⚡ Quick Start
+
+These commands are a reference implementation structure. Adjust them to match the actual repository.
+
+Clone
+
 git clone <YOUR_REPOSITORY_URL>
-cd QuotePilot-AI
-2. Configure Environment
-cp .env.example .env
-Configure values such as:
+cd quotepilot-ai
+
+Frontend
+
+cd apps/web
+npm install
+npm run dev
+
+Backend
+
+cd apps/api
+python -m venv .venv
+
+Windows:
+
+.venv\Scripts\activate
+
+Linux/macOS:
+
+source .venv/bin/activate
+
+Then:
+
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+Environment
+
+Create .env from .env.example.
+
+Example:
 
 DATABASE_URL=
 AI_API_KEY=
 JWT_SECRET=
-FX_API_KEY=
+APP_ENV=development
+
+DEFAULT_CURRENCY=INR
+SUPPORTED_CURRENCIES=INR,USD,EUR,GBP,AED,SGD,AUD,CAD,JPY,CHF
+
+FX_PROVIDER=
 STORAGE_BUCKET=
-Never commit real secrets.
 
-3. Start Backend
-cd backend
+Never commit secrets to Git.
 
-python -m venv .venv
+🎬 Make the GitHub README Interactive
 
-# Windows
-.venv\Scripts\activate
+For the repository, add these assets:
 
-# Linux/macOS
-source .venv/bin/activate
+docs/
+└── demo/
+    ├── dashboard.png
+    ├── rfq-upload.gif
+    ├── clarification.gif
+    ├── product-matching.gif
+    ├── approval.gif
+    └── final-quote.gif
 
-pip install -r requirements.txt
+Then place a hero demo directly below the project title:
 
-uvicorn app.main:app --reload
-4. Start Frontend
-cd frontend
+<p align="center">
+  <img src="docs/demo/quotepilot-demo.gif" width="900" alt="QuotePilot AI Demo">
+</p>
 
-npm install
-npm run dev
-🔑 Environment Variables
-Example:
+Recommended README visual sequence
 
-DATABASE_URL=postgresql://...
-AI_API_KEY=your_api_key
-JWT_SECRET=change_me
-FX_API_KEY=your_fx_provider_key
-STORAGE_BUCKET=...
-Do not commit:
+HERO
+ ↓
+30-second GIF
+ ↓
+Problem
+ ↓
+Solution
+ ↓
+Interactive workflow
+ ↓
+Dashboard screenshot
+ ↓
+AI agents
+ ↓
+Architecture
+ ↓
+Security
+ ↓
+Tech stack
+ ↓
+Quick Start
+ ↓
+Demo
+ ↓
+Roadmap
+ ↓
+Team
 
-.env
-API keys
-database passwords
-JWT secrets
-private credentials
-production certificates
-Use .env.example for documentation.
+This makes the repository feel like a product landing page, not just a technical document.
 
-🤝 Team
+🗺️ Roadmap
+
+PHASE 1 ─────────────── MVP
+│
+├─ RFQ upload
+├─ Requirement extraction
+├─ Catalogue matching
+├─ Pricing rules
+├─ Margin validation
+├─ Approval workflow
+└─ PDF quotation
+
+PHASE 2 ─────────────── PILOT
+│
+├─ Multi-user SaaS
+├─ Multi-tenant architecture
+├─ Multi-currency
+├─ Audit trail
+├─ Notifications
+└─ Customer management
+
+PHASE 3 ─────────────── COMMERCIAL
+│
+├─ Email integration
+├─ ERP / CRM integrations
+├─ Advanced catalogue ingestion
+├─ Analytics
+├─ Usage billing
+└─ Enterprise controls
+
+🎯 Hackathon Demo
+
+The 3-minute story
+
+00:00  Problem
+   ↓
+00:20  QuotePilot introduction
+   ↓
+00:40  Upload RFQ
+   ↓
+01:00  AI extracts requirements
+   ↓
+01:20  Missing specification detected
+   ↓
+01:40  Product matching
+   ↓
+02:00  Price + margin
+   ↓
+02:20  Approval workflow
+   ↓
+02:40  Final quotation
+   ↓
+03:00  Why QuotePilot
+
+Closing line
+
+“We are not building an AI that simply writes quotations. We are building a governed system that turns an unstructured customer request into a commercially validated quotation, while keeping humans responsible for the final commitment.”
+
+🚧 MVP Scope
+
+✅ In MVP
+
+RFQ upload
+
+Structured extraction
+
+Specification normalization
+
+Missing specification detection
+
+Product matching
+
+Simulated catalogue
+
+Simulated inventory
+
+Pricing engine
+
+Margin guardrail
+
+Approval workflow
+
+Quote generation
+
+PDF export
+
+Audit trail
+
+Demo authentication
+
+🔮 Later
+
+Real ERP integration
+
+CRM integration
+
+Email ingestion
+
+WhatsApp integration
+
+Production inventory synchronization
+
+Automated customer communication
+
+Advanced analytics
+
+Enterprise SSO
+
+Usage-based billing
+
+⚠️ Demo Data Disclaimer
+
+The hackathon prototype may use:
+
+fictional customers
+
+simulated products
+
+simulated prices
+
+simulated inventory
+
+simulated tax data
+
+simulated exchange rates
+
+mock integrations
+
+These values should be clearly labelled DEMO / SIMULATED.
+
+The prototype must not accidentally send real external quotations or perform real commercial transactions.
+
+👨‍💻 Team
+
 Adarsh Verma
-Co-Founder & Product / Technology Lead
 
-MCA student at University of Allahabad
+Co-Founder · Product & Technology
 
-Full-stack development
+Full-stack application development
 
-AI/ML and AI-agent workflows
+AI/agent workflow design
 
-Backend APIs and databases
+Backend architecture
 
-System architecture
+Database systems
 
-Product development
+Product engineering
 
 Technical execution
 
-Additional team members should be added here.
+Add the second team member here when their details are finalized.
 
-📜 Project Status
-Status: Prototype / Hackathon MVP
+🧭 Product Philosophy
 
-QuotePilot AI is being developed as an AI-powered B2B quotation automation platform for demonstrating an end-to-end governed RFQ-to-quotation workflow.
+QuotePilot follows five principles:
 
-The prototype may use simulated catalogue, inventory, pricing, exchange-rate and integration data for demonstration purposes.
+1. AI should assist — not silently decide.
 
-🧠 Design Philosophy
-QuotePilot AI follows five principles:
+2. Financial calculations should be deterministic.
 
-1. AI-Assisted
-AI handles unstructured information and repetitive reasoning tasks.
+3. Missing information should become a visible blocker.
 
-2. Evidence-Based
-Important recommendations should be traceable to source data.
+4. Critical actions should require appropriate approval.
 
-3. Deterministic
-Financial calculations and policy rules should be implemented using deterministic business logic.
+5. Every important decision should be traceable.
 
-4. Human-Controlled
-Critical commercial decisions require appropriate human approval.
+📚 Documentation
 
-5. Auditable
-Important decisions, overrides, revisions and approvals should remain traceable.
-
-📄 Documentation
 Recommended project documentation:
 
 Software Requirements Specification
 
-Complete Project Report
-
 System Architecture
-
-DFD Level 0
-
-DFD Level 1
-
-DFD Level 2
-
-ER Diagram
-
-UML Class Diagram
-
-Use Case Diagram
-
-Sequence Diagram
-
-Activity Diagram
 
 API Documentation
 
-Security Documentation
+Database Design
 
-Testing Documentation
+Security Model
 
-Deployment Documentation
+AI Agent Design
 
-📌 Important Disclaimer
-QuotePilot AI is a prototype/hackathon project.
+Testing Strategy
 
-AI-generated recommendations should be validated before being used for real commercial commitments.
+Demo Script
 
-Financial calculations, tax treatment, customs information, product compatibility, pricing policies and contractual terms should be validated against the organization's authoritative systems and applicable regulations before production use.
+Project Report
 
-⭐ QuotePilot AI
-From messy RFQ to governed quotation — faster, safer, and auditable.
+If these files do not exist yet, create them before keeping the links above.
 
-AI prepares. Rules validate. Humans approve.
+⭐ What Makes QuotePilot Different?
+
+Traditional workflow
+──────────────────────────────────────────────
+RFQ → Human → Excel → Catalogue → Email → Quote
+
+
+Generic AI chatbot
+──────────────────────────────────────────────
+RFQ → AI → Text
+
+
+QuotePilot
+──────────────────────────────────────────────
+RFQ
+ ↓
+Extraction
+ ↓
+Normalization
+ ↓
+Clarification Gate
+ ↓
+Evidence-backed Product Matching
+ ↓
+Deterministic Commercial Engine
+ ↓
+Margin Guardrails
+ ↓
+Approval Chain
+ ↓
+Versioned Audit Trail
+ ↓
+Human-approved Quote
+
+The key idea:
+
+QuotePilot does not stop at generating text. It governs the workflow that leads to a commercial commitment.
+
+📜 License
+
+Add the project's chosen license here before public release.
+
+Example:
+
+MIT License
+
+<div align="center">
+
+⚡ QuotePilot AI
+
+Turning messy RFQs into governed, human-approved quotations.
+
+Built for intelligent B2B sales automation.
+
+<br>
+
+⭐ Star the repository if you find the idea interesting.
+
+</div>
