@@ -1,0 +1,63 @@
+[project]
+name = "quotepilot-backend"
+version = "0.1.0"
+description = "QuotePilot AI - Governed RFQ-to-Quotation Platform Backend"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.109.0",
+    "uvicorn[standard]>=0.27.0",
+    "sqlalchemy>=2.0.25",
+    "alembic>=1.13.0",
+    "asyncpg>=0.29.0",
+    "psycopg2-binary>=2.9.9",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.6",
+    "pydantic>=2.5.3",
+    "pydantic[email]>=2.5.3",
+    "pydantic-settings>=2.1.0",
+    "httpx>=0.26.0",
+    "python-dotenv>=1.0.0",
+    "redis>=5.0.1",
+    "celery>=5.3.6",
+    "apscheduler>=3.10.4",
+    "openpyxl>=3.1.2",
+    "pdfplumber>=0.11.0",
+    "python-docx>=1.1.0",
+    "pandas>=2.1.4",
+    "jinja2>=3.1.2",
+    "weasyprint>=60.1",
+    "email-validator>=2.1.0",
+    "bcrypt>=4.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.4",
+    "pytest-asyncio>=0.23.3",
+    "pytest-cov>=4.1.0",
+    "httpx>=0.26.0",
+    "faker>=22.0.0",
+    "black>=23.12.1",
+    "ruff>=0.1.15",
+    "mypy>=1.8.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.4.4",
+    "pytest-asyncio>=0.23.3",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
